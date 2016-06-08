@@ -1,2 +1,2 @@
 # CGproject
-3sweep in CG project
+CG project
