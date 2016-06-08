@@ -1,0 +1,7 @@
+﻿  model.cpp
+c:\users\tsf\desktop\3sweep\3sweep\model.cpp(36): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\tsf\desktop\3sweep\3sweep\model.cpp(37): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+c:\users\tsf\desktop\3sweep\3sweep\model.cpp(44): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+c:\users\tsf\desktop\3sweep\3sweep\model.cpp(71): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\tsf\desktop\3sweep\3sweep\model.cpp(92): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  3sweep.vcxproj -> C:\Users\TSF\Desktop\3sweep\Debug\3sweep.exe
