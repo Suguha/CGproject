@@ -24,12 +24,24 @@
     <ClCompile Include="model.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="sweepCanny.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="getTexture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sweepPoint.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="model.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sweepCanny.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="getTexture.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

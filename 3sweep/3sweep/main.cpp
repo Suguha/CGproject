@@ -3,14 +3,19 @@
 #include <opencv2/highgui.hpp>
 #include "sweepPoint.h"
 #include "model.h"
+#include "sweepCanny.h"
+#include "getTexture.h"
 
 using namespace std;
 using namespace cv;
 
+IplImage* image = 0;
 IplImage* src = 0;
 IplImage* dst = 0;
-sweepPoint points;
-model m;
+sweepPoint points;       //3sweep points
+model m;                 //3sweep model
+sweepCanny edge;         //image edge
+getTexture text;         //get texture
 
 void mouseEvent(int event, int x, int y, int flags, void* ustc)
 {
@@ -38,9 +43,13 @@ void mouseEvent(int event, int x, int y, int flags, void* ustc)
 			points.savePoint(cur_pt);
 			m.savePoint(cur_pt);
 
-			m.run(src);
+			m.run(src, edge, text);
 			cvPutText(src, temp, cur_pt, &font, cvScalar(0, 0, 0, 255));
 			cvCircle(src, cur_pt, 3, cvScalar(255, 0, 0, 0), CV_FILLED, CV_AA, 0);
+		}
+		if (points.getNumber() == 4)
+		{
+			text.drawResult();
 		}
 		cvShowImage("src", src);
 		cvCopy(src, dst);
@@ -60,7 +69,7 @@ void mouseEvent(int event, int x, int y, int flags, void* ustc)
 		{
 			m.saveTempPoint(cur_pt);
 
-			m.run(src);
+			m.run(src, edge, text);
 		}
 		cvShowImage("src", src);
 	}
@@ -89,7 +98,7 @@ void mouseEvent(int event, int x, int y, int flags, void* ustc)
 
 int main(int argc, char* argv[])
 {
-	const char* imagename = "1.png";
+	const char* imagename = "1.jpg";
 
 	//从文件中读入图像
 	Mat img = imread(imagename, -1);
@@ -100,15 +109,21 @@ int main(int argc, char* argv[])
 		fprintf(stderr, "Can not load image %s\n", imagename);
 		return -1;
 	}
-
+	//读入提取边缘
+	edge.init(img);
+	//edge.show();
 	
 	src = cvLoadImage(imagename, 1);
 	dst = cvCloneImage(src);
+	image = src;
+	text.init(image);
+
 	cvNamedWindow("src", 1);
 	cvShowImage("src", src);
 	cvSetMouseCallback("src", mouseEvent, 0);
 	//显示图像
 	//imshow("image", img);
+
 
 	//此函数等待按键，按键盘任意键就返回
 	waitKey();

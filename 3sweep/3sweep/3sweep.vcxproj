@@ -73,12 +73,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="getTexture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="model.cpp" />
+    <ClCompile Include="sweepCanny.cpp" />
     <ClCompile Include="sweepPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="getTexture.h" />
     <ClInclude Include="model.h" />
+    <ClInclude Include="sweepCanny.h" />
     <ClInclude Include="sweepPoint.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
