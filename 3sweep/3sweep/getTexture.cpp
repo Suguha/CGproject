@@ -35,23 +35,28 @@ void getTexture::showModel()
 }
 
 void getTexture::drawResult()
-{
-	uchar* srcData = (uchar*)src->imageData;
-	uchar* modelData = (uchar*)modelImage->imageData;
-	uchar* resultData = (uchar*)result->imageData;
-	/*
+{	
 	for (int i = 0; i < result->height; i++)
 	{
 		for (int j = 0; j < result->width; j++)
 		{
-			cout << modelData[i * modelImage->width + j * 3] << endl;
-			//if (modelData[i * modelImage->width + j * 3] == )
+			CvScalar temp = cvGet2D(modelImage, i, j);
+			if (temp.val[2] == 255)
+			{
+				cvSet2D(result, i, j, cvGet2D(src, i, j));
+			}
 		}
-	}*/
+	}
 }
 
 void getTexture::showResult()
 {
 	namedWindow("Result", 1);
 	cvShowImage("Result", result);
+}
+
+void getTexture::showSrc()
+{
+	namedWindow("S", 1);
+	cvShowImage("S", src);
 }

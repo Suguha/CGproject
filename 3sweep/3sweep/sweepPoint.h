@@ -1,5 +1,5 @@
-#ifndef _SWEEPPOINT_H
-#define _SWEEPPOINT_H
+#ifndef _SWEEPPOINT_H_
+#define _SWEEPPOINT_H_
 
 #include <opencv2/opencv.hpp>
 using namespace cv;

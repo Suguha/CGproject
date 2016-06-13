@@ -1,5 +1,5 @@
-#ifndef _SWEEPCANNY_H
-#define _SWEEPCANNY_H
+#ifndef _SWEEPCANNY_H_
+#define _SWEEPCANNY_H_
 
 #include <opencv2\opencv.hpp>
 using namespace cv;

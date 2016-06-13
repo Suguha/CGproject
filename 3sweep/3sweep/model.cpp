@@ -1,4 +1,5 @@
 #include "model.h"
+#include "3DModel.h"
 #include <math.h>
 #include <iostream>
 using namespace std;
@@ -11,6 +12,7 @@ model::model()
 	}
 	//point = new sweepPoint();
 	count = baseLongAxe = baseShortAxe = 0;
+	angle = 0;
 	preLongAxe = 0;
 	center = { -1, -1 };
 	tempRun = false;
@@ -36,6 +38,8 @@ void model::drawBy2Points()
 	center = { (points[0].x + points[1].x) / 2, (points[0].y + points[1].y) / 2 };
 	int temp = pow(points[0].x - points[1].x, 2) + pow(points[0].y - points[1].y, 2);
 	baseLongAxe = sqrt(temp) / 2;
+	angle = asin(abs(points[0].y - points[1].y) / (double)(baseLongAxe * 2)) * 180 / 3.1416;
+	cout << angle << endl;
 	//cout << "long: " <<longAxe << endl;
 }
 
@@ -46,12 +50,14 @@ void model::drawBy3Points(IplImage* src)
 	//cout << "short: " <<shortAxe << endl;
 	if (baseShortAxe > 0)
 	{
-		cvEllipse(src, center, cvSize(baseLongAxe, baseShortAxe), 0, 0, 360, color, 1);
+		cvEllipse(src, center, cvSize(baseLongAxe, baseShortAxe), angle, 0, 360, color, 1);
 	}
 }
 
 void model::drawBy4Points(IplImage* src, sweepCanny edge, getTexture& t)
 {
+	threeDModel::getInstance()->getData()->shortAxe = baseShortAxe;
+	threeDModel::getInstance()->getData()->angle = angle;
 	if (abs(points[3].y - points[2].y) < abs(points[3].x - points[2].x))
 	{
 		//cout << "y" << endl;
@@ -80,11 +86,12 @@ void model::drawBy4Points(IplImage* src, sweepCanny edge, getTexture& t)
 		{
 			CvPoint tempCenter = cvPoint(center.x + (i - points[2].x), center.y + (i - points[2].x) * k);
 			int currentLongAxe = edge.nextLongAxe(tempCenter, preLongAxe);
-			cvEllipse(src, tempCenter, cvSize(currentLongAxe, baseShortAxe), 0, 0, 360, color, -1);
+			cvEllipse(src, tempCenter, cvSize(currentLongAxe, baseShortAxe), angle, 0, 360, color, -1);
 			if (!tempRun)
 			{
-				cvEllipse(t.drawModel(), tempCenter, cvSize(currentLongAxe, baseShortAxe), 0, 0, 360, color, -1);
-				t.showModel();
+				cvEllipse(t.drawModel(), tempCenter, cvSize(currentLongAxe, baseShortAxe), angle, 0, 360, color, -1);
+				threeDModel::getInstance()->getData()->center.push_back(tempCenter);
+				threeDModel::getInstance()->getData()->longAxe.push_back(currentLongAxe);
 			}
 			preLongAxe = currentLongAxe;
 		}
@@ -117,11 +124,13 @@ void model::drawBy4Points(IplImage* src, sweepCanny edge, getTexture& t)
 		{
 			CvPoint tempCenter = cvPoint(center.x + (i - points[2].y) * k, center.y + (i - points[2].y));
 			int currentLongAxe = edge.nextLongAxe(tempCenter, preLongAxe);
-			cvEllipse(src, tempCenter, cvSize(currentLongAxe, baseShortAxe), 0, 0, 360, color, -1);
+			cvEllipse(src, tempCenter, cvSize(currentLongAxe, baseShortAxe), angle, 0, 360, color, -1);
 			if (!tempRun)
 			{
-				cvEllipse(t.drawModel(), tempCenter, cvSize(currentLongAxe, baseShortAxe), 0, 0, 360, color, -1);
-				t.showModel();
+				cvEllipse(t.drawModel(), tempCenter, cvSize(currentLongAxe, baseShortAxe), angle, 0, 360, color, -1);
+				threeDModel::getInstance()->getData()->center.push_back(tempCenter);
+				threeDModel::getInstance()->getData()->longAxe.push_back(currentLongAxe);
+				//t.showModel();
 			}
 			preLongAxe = currentLongAxe;
 		}

@@ -13,6 +13,7 @@ public:
 	IplImage* drawModel();
 	void showModel();
 	void showResult();
+	void showSrc();
 	void drawResult();
 
 private:

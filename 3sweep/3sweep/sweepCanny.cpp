@@ -4,7 +4,7 @@ using namespace std;
 
 sweepCanny::sweepCanny()
 {
-	hold = 0.2;
+	hold = 0.5;
 }
 
 sweepCanny::~sweepCanny()
@@ -24,7 +24,6 @@ void sweepCanny::init(Mat src)
 		row *= col;
 		col = 1;
 	}
-	//cout << row << "  " << col;
 }
 
 void sweepCanny::show()

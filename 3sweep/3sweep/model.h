@@ -1,5 +1,5 @@
-#ifndef _MODEL_H
-#define _MODEL_H
+#ifndef _MODEL_H_
+#define _MODEL_H_
 
 #include <opencv2/opencv.hpp>
 #include "sweepPoint.h"
@@ -31,6 +31,7 @@ private:
 	CvPoint points[4];
 	CvPoint center;
 	int baseLongAxe, baseShortAxe;
+	double angle;
 	int count;
 	int preLongAxe;
 	bool tempRun;
