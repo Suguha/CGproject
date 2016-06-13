@@ -1,4 +1,2 @@
-﻿  sweepCanny.cpp
-d:\sekkoworkspace\cgproject\3sweep\3sweep\sweepcanny.cpp(37): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
-d:\sekkoworkspace\cgproject\3sweep\3sweep\sweepcanny.cpp(38): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+﻿  main.cpp
   3sweep.vcxproj -> D:\sekkoWorkSpace\CGproject\3sweep\Debug\3sweep.exe

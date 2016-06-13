@@ -105,7 +105,7 @@ void mouseEvent(int event, int x, int y, int flags, void* ustc)
 
 int main(int argc, char* argv[])
 {
-	const char* imagename = "2.jpg";
+	const char* imagename = "1.jpg";
 	threedmodel->setParam(argc, argv);
 
 	//从文件中读入图像
