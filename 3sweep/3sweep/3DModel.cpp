@@ -50,6 +50,7 @@ void threeDModel::setParam(int c, char** v)
 
 GLfloat ang_x = 0;
 GLfloat ang_y = 0;
+GLfloat scar = 1;
 void init()
 {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
@@ -63,7 +64,8 @@ void display()
 	glLoadIdentity();
 	glRotatef(ang_x, 1, 0, 0);
 	glRotatef(ang_y, 0, 1, 0);
-	glBegin(GL_LINE_STRIP);
+	glScalef(scar, scar, scar);
+	glBegin(GL_TRIANGLE_FAN);//LINE_LOOP STRIP
 	glColor3f(1.0, 1.0, 1.0);
 	CvPoint first = *data->getData()->center.begin();
 	list<CvPoint>::iterator centerIter = data->getData()->center.begin();
@@ -93,6 +95,12 @@ void key(unsigned char key, int x, int y)
 	if (key == 'd') {
 		ang_y -= 10;
 	}
+	if (key == 'q') {
+		scar += 0.01;
+	}
+	if (key == 'e') {
+		scar -= 0.01;
+	}
 	glutPostRedisplay();
 }
 
@@ -116,4 +124,3 @@ void threeDModel::run()
 	glutMainLoop();
 	return;
 }
-

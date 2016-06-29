@@ -4,7 +4,7 @@ using namespace std;
 
 sweepCanny::sweepCanny()
 {
-	hold = 0.5;
+	hold = 0.2;
 }
 
 sweepCanny::~sweepCanny()
@@ -12,10 +12,10 @@ sweepCanny::~sweepCanny()
 
 }
 
-void sweepCanny::init(Mat src)
+void sweepCanny::init(Mat src, int a, int b)
 {
 	cvtColor(src, src, CV_RGB2GRAY);
-	Canny(src, edge, 125, 400);   ///125    350
+	Canny(src, edge, a, b);   ///125    400
 	threshold(edge, edge, 128, 255, THRESH_BINARY);
 	row = edge.rows;
 	col = edge.cols;

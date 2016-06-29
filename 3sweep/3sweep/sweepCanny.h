@@ -8,7 +8,7 @@ class sweepCanny
 {
 public:
 	sweepCanny();
-	void init(Mat src);
+	void init(Mat src, int a, int b);
 	void show();
 	bool isMatch(CvPoint p);
 	int nextLongAxe(CvPoint center, int preLongAxe);

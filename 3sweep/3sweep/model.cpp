@@ -39,7 +39,9 @@ void model::drawBy2Points()
 	int temp = pow(points[0].x - points[1].x, 2) + pow(points[0].y - points[1].y, 2);
 	baseLongAxe = sqrt(temp) / 2;
 	angle = asin(abs(points[0].y - points[1].y) / (double)(baseLongAxe * 2)) * 180 / 3.1416;
-	cout << angle << endl;
+	if (points[1].x > points[0].x && points[1].y < points[0].y)
+		angle = 180 - angle;
+	//cout << angle << endl;
 	//cout << "long: " <<longAxe << endl;
 }
 

@@ -118,7 +118,10 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 	//读入提取边缘
-	edge.init(img);
+	cout << "提取边缘的参数" << endl;
+	int a, b;
+	cin >> a >> b;
+	edge.init(img, a, b);
 	//edge.show();
 
 	src = cvLoadImage(imagename, 1);
